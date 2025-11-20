@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Educación Musical | Villa María</title>
+    <!-- Carga de Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuración personalizada de Tailwind para un tema oscuro/profesional */
+        :root {
+            --color-primary: #4f46e5; /* Indigo 600 */
+            --color-secondary: #10b981; /* Emerald 500 */
+            --color-background: #0f172a; /* Slate 900 */
+            --color-card: #1e293b; /* Slate 800 */
+            --color-text: #f1f5f9; /* Slate 100 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+        }
+        .card {
+            background-color: var(--color-card);
+            color: var(--color-text);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        /* Estilo para los medidores (gauges) - solo para fines visuales en CSS puro */
+        .gauge-ring {
+            stroke: var(--color-primary);
+            stroke-width: 10;
+            fill: none;
+            stroke-dasharray: 251.2; /* Circunferencia para radio de 40 */
+            stroke-dashoffset: 251.2;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        /* Estilo para hacer el iframe de YouTube responsivo (16:9) */
+        .video-responsive-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .video-responsive-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <!-- Cabecera y Título Principal --><header class="mb-10 text-center">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-2">
+            Dashboard de Educación Musical de Villa María
+        </h1>
+        <p class="text-xl text-indigo-400">Análisis de los programas municipales de arte y cultura (IMA)</p>
+    </header>
+
+    <!-- Contenedor Principal del Dashboard --><main class="max-w-7xl mx-auto">
+
+        <!-- SECCIÓN 1: Acceso y Equidad --><section class="mb-12">
+            <h2 class="text-3xl font-bold text-indigo-300 mb-6 border-b border-indigo-500/50 pb-2">
+                1. Acceso y Equidad (Programas IMA)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- KPI 1: Tasa de Participación en Talleres (Gauge) --><div class="card p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Tasa de Participación en Talleres IMA</h3>
+                    <div class="relative w-24 h-24">
+                        <!-- SVG para el Medidor (Gauge Placeholder) --><svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="stroke-slate-700" stroke-width="10" fill="none"></circle>
+                            <!-- Simulación de 65% lleno --><circle cx="50" cy="50" r="40" class="gauge-ring" style="stroke-dashoffset: calc(251.2 - (251.2 * 0.65)); stroke-dasharray: 251.2; stroke: var(--color-secondary);"></circle>
+                            <text x="50" y="50" class="text-xl font-bold fill-white" text-anchor="middle" dominant-baseline="middle">65%</text>
+                        </svg>
+                    </div>
+                    <p class="mt-3 text-sm text-center text-slate-400">Cupos de alumnos cubiertos en la Escuela de Música.</p>
+                </div>
+
+                <!-- KPI 2: Cobertura Geográfica de Barrios (Matriz) --><div class="card p-6 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4 text-indigo-300">Cobertura Geográfica (Barrios / Talleres Gratuitos)</h3>
+                    <!-- Matriz de 21 bloques simulando la ocupación de los barrios con talleres IMA --><div class="h-40 flex flex-col justify-between">
+                        <div class="grid grid-cols-7 gap-1.5 p-2 bg-slate-700 rounded-lg h-full max-h-32 overflow-hidden">
+                            <!-- 14 Barrios de Alta Ocupación (>80%) - Verde --><div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 90% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 85% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 95% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 82% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 98% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 88% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 81% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 91% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 87% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 83% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 92% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 86% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 89% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-emerald-500 shadow-md" title="Barrio con 94% de ocupación"></div>
+                            <!-- 5 Barrios de Ocupación Media (50%-80%) - Amarillo --><div class="w-full h-full rounded bg-amber-500 shadow-md" title="Barrio con 75% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-amber-500 shadow-md" title="Barrio con 60% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-amber-500 shadow-md" title="Barrio con 55% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-amber-500 shadow-md" title="Barrio con 78% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-amber-500 shadow-md" title="Barrio con 68% de ocupación"></div>
+                            <!-- 2 Barrios de Baja Ocupación (<50%) - Rojo --><div class="w-full h-full rounded bg-red-500 shadow-md" title="Barrio con 35% de ocupación"></div>
+                            <div class="w-full h-full rounded bg-red-500 shadow-md" title="Barrio con 45% de ocupación"></div>
+                        </div>
+                        
+                        <!-- Leyenda --><div class="mt-3 text-xs text-slate-400 flex justify-center space-x-4">
+                            <div class="flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 mr-1"></span> > 80% (14 Barrios)
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-amber-500 mr-1"></span> 50%-80% (5 Barrios)
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-red-500 mr-1"></span> < 50% (2 Barrios)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI 3 & 4: Equidad e Inclusión --><div class="card p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Inclusión y Equidad</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                            <span class="text-sm text-slate-300">Participación SEN:</span>
+                            <span class="text-lg font-bold text-emerald-400">12.5%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-slate-300">Equidad de Género (Vocal):</span>
+                            <span class="text-lg font-bold text-indigo-400">45% Mujeres</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Calidad y Desempeño --><section class="mb-12">
+            <h2 class="text-3xl font-bold text-indigo-300 mb-6 border-b border-indigo-500/50 pb-2">
+                2. Calidad y Desempeño (El Impacto)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- KPI 1: Puntuación de Desempeño Musical (Trend) --><div class="card p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Puntuación de Desempeño Musical</h3>
+                    <div class="text-3xl font-bold text-emerald-400">82.1 <span class="text-sm font-normal text-slate-400">/ 100</span></div>
+                    <!-- Placeholder para Gráfico de Línea (Tendencia) --><div class="h-20 mt-4 bg-slate-700 rounded-lg flex items-center justify-center">
+                        <p class="text-xs text-slate-400">[Placeholder: Gráfico de Líneas - Tendencia Trimestral de alumnos del Conservatorio o IMA]</p>
+                    </div>
+                    <p class="text-sm mt-3 text-slate-400">Mejora de +3.5 puntos respecto al trimestre anterior.</p>
+                </div>
+
+                <!-- KPI 2: Tasa de Retención Estudiantil (Gauge) --><div class="card p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Tasa de Retención Estudiantil (IMA)</h3>
+                    <div class="relative w-24 h-24">
+                        <!-- Simulación de 85% lleno - Cita: Referencia estándar del 80%-85% --><svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="stroke-slate-700" stroke-width="10" fill="none"></circle>
+                            <circle cx="50" cy="50" r="40" class="gauge-ring" style="stroke-dashoffset: calc(251.2 - (251.2 * 0.85)); stroke-dasharray: 251.2; stroke: var(--color-secondary);"></circle>
+                            <text x="50" y="50" class="text-xl font-bold fill-white" text-anchor="middle" dominant-baseline="middle">85%</text>
+                        </svg>
+                    </div>
+                    <p class="mt-3 text-sm text-center text-slate-400">Alumnos que completan el ciclo de talleres musicales.</p>
+                </div>
+
+                <!-- KPI 3: Satisfacción del Estudiante/Docente --><div class="card p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Satisfacción General (Escala 1-5)</h3>
+                    <div class="flex items-end space-x-2 mb-4">
+                        <span class="text-5xl font-extrabold text-white">4.3</span>
+                        <span class="text-xl text-slate-400">/ 5.0</span>
+                    </div>
+                    <div class="w-full bg-slate-700 rounded-full h-2.5">
+                        <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 86%"></div>
+                    </div>
+                    <p class="text-sm mt-3 text-slate-400">Puntuación promedio de encuestas a participantes de talleres.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: Recursos e Infraestructura --><section class="mb-12">
+            <h2 class="text-3xl font-bold text-indigo-300 mb-6 border-b border-indigo-500/50 pb-2">
+                3. Recursos e Infraestructura (El Soporte Local)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- KPI 1: Ratio Estudiante-Profesor --><div class="card p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Ratio Estudiante-Profesor (IMA)</h3>
+                    <div class="text-4xl font-extrabold text-white">22:1</div>
+                    <p class="text-sm mt-3 text-slate-400">Alumnos por docente en la Escuela de Música Municipal.</p>
+                </div>
+
+                <!-- KPI 4: Tiempo Lectivo Semanal --><div class="card p-6">
+                    <h3 class="text-lg font-semibold mb-3 text-indigo-300">Tiempo Lectivo Semanal (Promedio IMA)</h3>
+                    <div class="text-4xl font-extrabold text-white">1.4 <span class="text-xl text-slate-400">Hrs/Semana</span></div>
+                    <p class="text-sm mt-3 text-slate-400">Promedio de tiempo de instrucción por alumno en los talleres.</p>
+                </div>
+
+                <!-- KPI 3: Disponibilidad de Instrumentos (Gráfico de Barras con Datos e Imágenes) --><div class="card p-6 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-2 text-indigo-300">Disponibilidad de Instrumentos por Familia</h3>
+                    
+                    <!-- Ratio General --><p class="text-sm text-slate-400 mb-4">Ratio General: <span class="font-bold text-white">1 instrumento por cada 3.5 alumnos</span>.</p>
+
+                    <!-- Gráfico de Barras por Familia con Imágenes (SVGs incrustados) --><div class="flex space-x-6 h-48 items-end justify-around">
+                        <!-- Cuerda Frotada (Violín, Cello) - Altura: 30% --><div class="flex flex-col items-center flex-1 min-w-0">
+                            <!-- INLINE SVG: Violín (Forma abstracta) --><div class="mb-2 rounded-full ring-2 ring-indigo-500 bg-indigo-600 p-2 w-14 h-14 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-white">
+                                    <path d="M12 2v20M10 4h4M9 22h6M5 14h14M8 10h8M12 4v2m-2-1h4"/>
+                                    <path d="M6 10c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4v4c0 2.2-1.8 4-4 4h-4c-2.2 0-4-1.8-4-4v-4z"/>
+                                </svg>
+                            </div>
+                            <div class="w-10 bg-indigo-500 rounded-t-lg transition-all duration-500 hover:bg-indigo-400" style="height: 30%;" title="Cuerda Frotada: 30 unidades"></div>
+                            <span class="text-xs text-slate-400 mt-1 truncate">Frotada</span>
+                            <span class="text-sm font-semibold text-white">30</span>
+                        </div>
+                        
+                        <!-- Cuerda Pulsada (Guitarra, Ukelele) - Altura: 85% --><div class="flex flex-col items-center flex-1 min-w-0">
+                            <!-- INLINE SVG: Guitarra (Forma abstracta) --><div class="mb-2 rounded-full ring-2 ring-indigo-500 bg-indigo-600 p-2 w-14 h-14 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-white">
+                                    <path d="M8 3h8M12 3v3M6 15c0 3.3 2.7 6 6 6s6-2.7 6-6c0-3.3-2.7-6-6-6s-6 2.7-6 6zM12 9v12"/>
+                                </svg>
+                            </div>
+                            <div class="w-10 bg-indigo-500 rounded-t-lg transition-all duration-500 hover:bg-indigo-400" style="height: 85%;" title="Cuerda Pulsada: 85 unidades"></div>
+                            <span class="text-xs text-slate-400 mt-1 truncate">Pulsada</span>
+                            <span class="text-sm font-semibold text-white">85</span>
+                        </div>
+                        
+                        <!-- Viento (Flauta, Trompeta) - Altura: 50% --><div class="flex flex-col items-center flex-1 min-w-0">
+                            <!-- INLINE SVG: Instrumento de Viento/Bronce (Forma abstracta) --><div class="mb-2 rounded-full ring-2 ring-indigo-500 bg-indigo-600 p-2 w-14 h-14 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-white">
+                                    <path d="M12 2L12 22M10 4h4M10 20h4"/>
+                                    <path d="M14 6c1 2 2 3 3 3s2-1 2-2M10 18c-1-2-2-3-3-3s-2 1-2 2"/>
+                                </svg>
+                            </div>
+                            <div class="w-10 bg-indigo-500 rounded-t-lg transition-all duration-500 hover:bg-indigo-400" style="height: 50%;" title="Viento: 50 unidades"></div>
+                            <span class="text-xs text-slate-400 mt-1 truncate">Viento</span>
+                            <span class="text-sm font-semibold text-white">50</span>
+                        </div>
+                        
+                        <!-- Percusión (Batería, Batucada) - Altura: 95% --><div class="flex flex-col items-center flex-1 min-w-0">
+                            <!-- INLINE SVG: Tambor/Drum (Forma abstracta) --><div class="mb-2 rounded-full ring-2 ring-indigo-500 bg-indigo-600 p-2 w-14 h-14 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-white">
+                                    <path d="M10 16.5c-3.3 0-6-2.24-6-5s2.7-5 6-5h4c3.3 0 6 2.24 6 5s-2.7 5-6 5h-4zM6 11.5v5M18 11.5v5M9 14h6M8 12h8"/>
+                                </svg>
+                            </div>
+                            <div class="w-10 bg-indigo-500 rounded-t-lg transition-all duration-500 hover:bg-indigo-400" style="height: 95%;" title="Percusión: 95 unidades"></div>
+                            <span class="text-xs text-slate-400 mt-1 truncate">Percusión</span>
+                            <span class="text-sm font-semibold text-white">95</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- SECCIÓN 4: Video Informativo --><section class="mb-12">
+            <h2 class="text-3xl font-bold text-indigo-300 mb-6 border-b border-indigo-500/50 pb-2">
+                4. Video Informativo y Testimonios
+            </h2>
+            <div class="card p-6">
+                <h3 class="text-xl font-semibold mb-4 text-white">Video: ABRIERON 74 TALLERES GRATUITOS PARA VECINOS DE VILLA MARÍA</h3>
+                
+                <!-- Contenedor responsivo para el iframe de YouTube (usando clase personalizada) -->
+                <div class="video-responsive-container shadow-2xl">
+                    <iframe
+                        src="https://www.youtube.com/embed/L6m6M85hF08"
+                        title="ABRIERON 74 TALLERES GRATUITOS PARA VECINOS DE VILLA MARÍA"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <p class="mt-4 text-sm text-slate-400">
+                    Fuente: La Radio del centro del país (Publicado: 2025-04-09). 
+                    El video incluye detalles y testimonios sobre la descentralización de los talleres del IMA en los barrios.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script de ejemplo para interactividad (opcional) --><script>
+        // Función de ejemplo para manejar la interactividad si se usaran librerías de gráficos reales
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Dashboard de Educación Musical de Villa María listo para ser interactivo.');
+            // Aquí se inicializarían librerías como Chart.js o D3.js para renderizar gráficos dinámicos.
+        });
+    </script>
+</body>
+</html>
